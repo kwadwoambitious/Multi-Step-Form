@@ -1,0 +1,41 @@
+@if(!successful){
+<div class="summary-section">
+  <div class="thank-you-message">
+    <div>
+      <img src="/images/check-image.png" alt="check" />
+      <h1>Thank you!</h1>
+      <p>
+        {{ message }}
+      </p>
+    </div>
+  </div>
+</div>
+} @else {
+<div class="summary-section">
+  <h1>Finishing up</h1>
+  <p>Double-check everything looks OK before confirming.</p>
+  <div class="confirm-details">
+    <div class="plan-details">
+      <div>
+        @if(isMonthly){
+        <p class="selected-plan">Arcade (Monthly)</p>
+        } @else {
+        <p class="selected-plan">Arcade (Yearly)</p>
+        }
+        <a routerLink="/select-plan" class="change-btn">Change</a>
+      </div>
+      <div>
+        <span class="plan-price">$9/mo</span>
+      </div>
+    </div>
+    <hr />
+    <p class="add-on">Online service<span>+$1/mo</span></p>
+    <p class="add-on">Larger storage<span>+$2/mo</span></p>
+  </div>
+  <p class="total">Total (per month) <span>+$12/mo</span></p>
+  <div class="buttons">
+    <a routerLink="/add-ons" class="goBack-btn">Go Back</a>
+    <button type="button" class="confirm-btn">Confirm</button>
+  </div>
+</div>
+}
