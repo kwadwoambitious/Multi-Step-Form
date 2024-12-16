@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SelectPlanService } from '../select-plan.service';
 import { RouterLink } from '@angular/router';
+import { Plans } from '../plan-interface';
 
 @Component({
   selector: 'app-select-plan',
@@ -12,25 +13,25 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./select-plan.component.css'],
 })
 export class SelectPlanComponent implements OnInit {
-  public selectPlanContainer: any = {};
+  public selectPlanContainer: Plans[] = [];
   public isToggled = false;
-  public selectedPlan = 'arcade';
+  public selectedPlan: Plans | undefined = undefined;
 
-  constructor(private selectPlanService: SelectPlanService) {}
+  constructor(readonly selectPlanService: SelectPlanService) {}
 
   ngOnInit(): void {
-    this.selectedPlan = localStorage.getItem('selectedPlan') ?? 'arcade';
-
-    const storedValue = localStorage.getItem('selectedDuration');
-    this.isToggled = storedValue ? JSON.parse(storedValue) : false;
-
     this.selectPlanService.getPlansData().subscribe((data) => {
       this.selectPlanContainer = data.plans;
     });
+    const storedPlan = localStorage.getItem('selectedPlan');
+    this.selectedPlan = storedPlan ? JSON.parse(storedPlan) : undefined;
+
+    const storedValue = localStorage.getItem('selectedDuration');
+    this.isToggled = storedValue ? JSON.parse(storedValue) : false;
   }
 
-  public selectPlan(planName: string): void {
-    this.selectedPlan = planName;
+  public selectPlan(plan: Plans): void {
+    this.selectedPlan = plan;
     this.saveChanges();
   }
 
@@ -40,7 +41,7 @@ export class SelectPlanComponent implements OnInit {
   }
 
   public saveChanges(): void {
-    localStorage.setItem('selectedPlan', this.selectedPlan);
+    localStorage.setItem('selectedPlan', JSON.stringify(this.selectedPlan));
     localStorage.setItem('selectedDuration', String(this.isToggled));
   }
 }

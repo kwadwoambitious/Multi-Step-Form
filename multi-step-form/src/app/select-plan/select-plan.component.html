@@ -5,17 +5,23 @@
     @for(plan of selectPlanContainer; track plan.name){
     <div
       class="plan-card"
-      [class.selected]="selectedPlan === plan.name.toLowerCase()"
-      (click)="selectPlan(plan.name.toLowerCase())"
+      [class.selected]="
+        selectedPlan?.name?.toLowerCase() === plan.name.toLowerCase()
+      "
+      (click)="selectPlan(plan)"
     >
-      <img [src]="plan.image" loading="lazy" [alt]="plan.name" />
-      <p>{{ plan.name }}</p>
-      @if(isToggled){
-      <span class="price">${{ plan.price.yearly.yearlyPrice }}/yr</span>
-      <span class="yearly-duration">{{ plan.price.yearly.duration }}</span>
-      }@else {
-      <span class="price">${{ plan.price.monthly }}/mo</span>
-      }
+      <div>
+        <img [src]="plan.image" loading="lazy" [alt]="plan.name" />
+      </div>
+      <div>
+        <p>{{ plan.name }}</p>
+        @if(isToggled){
+        <span class="price">${{ plan.price.yearly.yearlyPrice }}/yr</span>
+        <span class="yearly-duration">{{ plan.price.yearly.duration }}</span>
+        }@else {
+        <span class="price">${{ plan.price.monthly }}/mo</span>
+        }
+      </div>
     </div>
     }
   </div>

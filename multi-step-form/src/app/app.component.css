@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   min-height: 100vh;
   font-family: "Ubuntu", sans-serif;
 }
@@ -9,6 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 50px;
   padding: 20px;
   max-width: 900px;
   width: 100%;
@@ -29,6 +31,8 @@
 .steps {
   margin-top: 40px;
   padding-inline: 32px;
+  display: flex;
+  flex-direction: column;
 }
 .sidebar img {
   width: 100%;
@@ -73,4 +77,42 @@
   background-color: #bee2fd;
   color: #022959;
   border: 1px solid #bee2fd;
+}
+.reset-btn {
+  border: none;
+  margin: 30px;
+  font-family: "Ubuntu", sans-serif;
+  background-color: #022959;
+  color: white;
+  padding: 13px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+.reset-btn:hover {
+  background-color: #164a8a;
+}
+@media screen and (max-width: 600px) {
+  .card {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    padding-bottom: 20px;
+  }
+  .sidebar {
+    width: 100%;
+  }
+  .steps {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+  .step-number-and-title {
+    display: none;
+  }
+  .sidebar img {
+    content: url("/images/bg-sidebar-mobile.svg");
+    margin-top: 0;
+  }
 }

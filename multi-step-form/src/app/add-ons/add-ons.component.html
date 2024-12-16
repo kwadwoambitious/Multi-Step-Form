@@ -22,10 +22,10 @@
         </div>
       </div>
       <div>
-        @if(monthly){
-        <span class="add-on-price">+${{ add_on.pricing.monthly }}/mo</span>
-        }@else {
+        @if(isToggled){
         <span class="add-on-price">+${{ add_on.pricing.yearly }}/yr</span>
+        }@else {
+        <span class="add-on-price">+${{ add_on.pricing.monthly }}/mo</span>
         }
       </div>
     </div>
