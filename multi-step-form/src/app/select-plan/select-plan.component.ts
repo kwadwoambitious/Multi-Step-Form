@@ -17,17 +17,21 @@ export class SelectPlanComponent implements OnInit {
   public isToggled = false;
   public selectedPlan: Plans | undefined = undefined;
 
-  constructor(readonly selectPlanService: SelectPlanService) {}
+  constructor(private selectPlanService: SelectPlanService) {}
 
   ngOnInit(): void {
-    this.selectPlanService.getPlansData().subscribe((data) => {
-      this.selectPlanContainer = data.plans;
-    });
+    this.initSelectedPlan();
     const storedPlan = localStorage.getItem('selectedPlan');
     this.selectedPlan = storedPlan ? JSON.parse(storedPlan) : undefined;
 
     const storedValue = localStorage.getItem('selectedDuration');
     this.isToggled = storedValue ? JSON.parse(storedValue) : false;
+  }
+
+  private initSelectedPlan(): void {
+    this.selectPlanService.getPlansData().subscribe((data) => {
+      this.selectPlanContainer = data;
+    });
   }
 
   public selectPlan(plan: Plans): void {

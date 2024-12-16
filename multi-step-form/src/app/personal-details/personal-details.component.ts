@@ -23,7 +23,7 @@ export class PersonalDetailsComponent implements OnInit {
 
   public isSubmitted = false;
 
-  constructor(readonly router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     const savedName = localStorage.getItem('name');

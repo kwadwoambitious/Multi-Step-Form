@@ -7,9 +7,9 @@ import { AddOns } from './add-ons-interface';
   providedIn: 'root',
 })
 export class AddOnsService {
-  constructor(readonly http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  public getAddOnsData(): Observable<{ add_ons: AddOns[] }> {
-    return this.http.get<{ add_ons: AddOns[] }>('./add-ons-data.json');
+  public getAddOnsData(): Observable<AddOns[]> {
+    return this.http.get<AddOns[]>('./add-ons-data.json');
   }
 }

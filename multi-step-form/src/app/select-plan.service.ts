@@ -7,10 +7,10 @@ import { Plans } from './plan-interface';
   providedIn: 'root',
 })
 export class SelectPlanService {
-  constructor(readonly http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  public getPlansData(): Observable<{ plans: Plans[] }> {
-    return this.http.get<{ plans: Plans[] }>('./plans-data.json');
+  public getPlansData(): Observable<Plans[]> {
+    return this.http.get<Plans[]>('./plans-data.json');
   }
 
   public getPlanDuration(): boolean {

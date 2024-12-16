@@ -21,8 +21,8 @@ export class SummaryComponent implements OnInit {
   public isToggled = false;
 
   constructor(
-    readonly router: Router,
-    readonly resetFormService: ResetFormService
+    private router: Router,
+    private resetFormService: ResetFormService
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class SummaryComponent implements OnInit {
     const storedValue = localStorage.getItem('selectedDuration');
     this.isToggled = storedValue ? JSON.parse(storedValue) : false;
 
-    const storedAddOns = localStorage.getItem('add-ons');
+    const storedAddOns = localStorage.getItem('addOns');
     this.selectedAddOns = storedAddOns ? JSON.parse(storedAddOns) : [];
   }
 

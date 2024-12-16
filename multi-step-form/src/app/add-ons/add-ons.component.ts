@@ -19,44 +19,48 @@ export class AddOnsComponent {
   public selectedAddOns: AddOns[] = [];
 
   constructor(
-    readonly addOnsService: AddOnsService,
-    readonly selectPlanService: SelectPlanService
+    private addOnsService: AddOnsService,
+    private selectPlanService: SelectPlanService
   ) {}
 
   ngOnInit(): void {
-    this.addOnsService.getAddOnsData().subscribe((data) => {
-      this.addOnsContainer = data.add_ons;
+    this.initSelectedAddOns();
+    this.isToggled = this.selectPlanService.getPlanDuration();
+  }
 
-      const storedAddOns = localStorage.getItem('add-ons');
+  private initSelectedAddOns(): void {
+    this.addOnsService.getAddOnsData().subscribe((data) => {
+      this.addOnsContainer = data;
+
+      const storedAddOns = localStorage.getItem('addOns');
       if (storedAddOns) {
         this.selectedAddOns = JSON.parse(storedAddOns);
 
-        this.addOnsContainer.forEach((add_on) => {
+        this.addOnsContainer.forEach((addOn) => {
           const storedAddOn = this.selectedAddOns.find(
-            (selected) => selected.name === add_on.name
+            (selected) => selected.name === addOn.name
           );
           if (storedAddOn) {
-            add_on.selected = storedAddOn.selected;
+            addOn.selected = storedAddOn.selected;
           } else {
-            add_on.selected = false;
+            addOn.selected = false;
           }
         });
       }
     });
-    this.isToggled = this.selectPlanService.getPlanDuration();
   }
 
-  public getChecked(add_on: AddOns): void {
-    add_on.selected = !add_on.selected;
+  public getChecked(addOn: AddOns): void {
+    addOn.selected = !addOn.selected;
 
-    if (add_on.selected) {
-      this.selectedAddOns.push(add_on);
+    if (addOn.selected) {
+      this.selectedAddOns.push(addOn);
     } else {
       this.selectedAddOns = this.selectedAddOns.filter(
-        (existingAddOn) => existingAddOn.name !== add_on.name
+        (existingAddOn) => existingAddOn.name !== addOn.name
       );
     }
 
-    localStorage.setItem('add-ons', JSON.stringify(this.selectedAddOns));
+    localStorage.setItem('addOns', JSON.stringify(this.selectedAddOns));
   }
 }

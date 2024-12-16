@@ -11,6 +11,6 @@ export class ResetFormService {
     localStorage.removeItem('email');
     localStorage.removeItem('phone');
     localStorage.removeItem('selectedPlan');
-    localStorage.removeItem('add-ons');
+    localStorage.removeItem('addOns');
   }
 }
