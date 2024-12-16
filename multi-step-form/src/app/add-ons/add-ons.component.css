@@ -15,6 +15,7 @@
   margin-bottom: 35px;
   color: #9699aa;
   font-weight: 400;
+  line-height: 25px;
 }
 .add-on {
   display: flex;
@@ -120,4 +121,18 @@ input[type="checkbox"]:checked::before {
 }
 .next-btn:hover {
   background-color: #164a8a;
+}
+@media screen and (max-width: 600px) {
+  .add-ons-section {
+    width: 95%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.3);
+    margin-top: -100px;
+    padding: 40px 20px;
+  }
+  .add-on-items {
+    gap: 8px;
+  }
 }

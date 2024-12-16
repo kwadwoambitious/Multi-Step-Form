@@ -1,4 +1,4 @@
-@if(showOnlyStarterPage){
+@if(showStarterPage){
 <app-starter-page></app-starter-page>
 } @else {
 <div class="container">
@@ -9,7 +9,7 @@
           <div>
             <span class="number">1</span>
           </div>
-          <div>
+          <div class="step-number-and-title">
             <span class="step-number">STEP 1</span>
             <span class="step-title">YOUR INFO</span>
           </div>
@@ -18,7 +18,7 @@
           <div>
             <span class="number">2</span>
           </div>
-          <div>
+          <div class="step-number-and-title">
             <span class="step-number">STEP 2</span>
             <span class="step-title">SELECT PLAN</span>
           </div>
@@ -27,7 +27,7 @@
           <div>
             <span class="number">3</span>
           </div>
-          <div>
+          <div class="step-number-and-title">
             <span class="step-number">STEP 3</span>
             <span class="step-title">ADD-ONS</span>
           </div>
@@ -36,7 +36,7 @@
           <div>
             <span class="number">4</span>
           </div>
-          <div>
+          <div class="step-number-and-title">
             <span class="step-number">STEP 4</span>
             <span class="step-title">SUMMARY</span>
           </div>
@@ -44,9 +44,9 @@
       </div>
       <img src="/images/navigation-vector.png" alt="vector" />
     </div>
-    <div>
-      <router-outlet />
-    </div>
+
+    <router-outlet />
   </div>
+  <button class="reset-btn" (click)="resetForm()">Reset</button>
 </div>
 }

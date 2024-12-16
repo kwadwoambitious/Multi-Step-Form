@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { StarterPageComponent } from './starter-page/starter-page.component';
+import { ResetFormService } from './reset-form.service';
+import { Router } from '@angular/router';
 
-import {
-  Router,
-  RouterOutlet,
-  RouterLink,
-  RouterLinkActive,
-} from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,17 +13,28 @@ import {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  public showOnlyStarterPage!: boolean;
+  public showStarterPage = true;
 
-  constructor(readonly router: Router) {}
+  constructor(
+    private router: Router,
+    private resetFormService: ResetFormService
+  ) {}
 
   ngOnInit(): void {
+    this.checkRouteAndUpdatePageVisibility();
+
     this.router.events.subscribe(() => {
-      if (this.router.url === '') {
-        this.showOnlyStarterPage = true;
-      } else {
-        this.showOnlyStarterPage = false;
-      }
+      this.checkRouteAndUpdatePageVisibility();
     });
+  }
+
+  private checkRouteAndUpdatePageVisibility(): void {
+    this.showStarterPage = this.router.url === '' || this.router.url === '/';
+  }
+
+  public resetForm(): void {
+    this.resetFormService.resetForm();
+    this.showStarterPage = true;
+    this.router.navigate(['/']);
   }
 }
